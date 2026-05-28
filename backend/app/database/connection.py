@@ -523,10 +523,12 @@ class Database:
             logger.info("Connected to MongoDB successfully!")
         except Exception as e:
             logger.warning("----------------------------------------------------------------------")
+            logger.warning(f"DATABASE CONNECTION FAILURE: {str(e)}")
             logger.warning("MONGODB SERVER IS OFFLINE. Fallback activated successfully!")
             logger.warning("QuizPulse activated zero-dependency IN-MEMORY FALLBACK DATABASE mode!")
             logger.warning("All operations will work perfectly inside server RAM cache memory.")
             logger.warning("----------------------------------------------------------------------")
+
             self.client = None
             self.db = MockDatabase()
 
