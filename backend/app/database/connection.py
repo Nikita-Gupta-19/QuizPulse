@@ -510,11 +510,12 @@ class Database:
     def connect(self):
         logger.info(f"Connecting to MongoDB at {settings.MONGO_URI}...")
         try:
-            # Synchronous check using standard pymongo Client with 1-second timeout
+            # Synchronous check using standard pymongo Client with 5-second timeout
             from pymongo import MongoClient
-            check_client = MongoClient(settings.MONGO_URI, serverSelectionTimeoutMS=1000)
+            check_client = MongoClient(settings.MONGO_URI, serverSelectionTimeoutMS=5000)
             check_client.admin.command('ping')
             check_client.close()
+
             
             # If ping succeeds, establish actual async connection
             self.client = AsyncIOMotorClient(settings.MONGO_URI)
