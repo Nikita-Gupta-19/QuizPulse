@@ -1,5 +1,7 @@
 # QuizPulse — WhatsApp-Inspired Micro-Learning Analytics Platform
 
+Live Demo : https://quiz-pulse-roan.vercel.app/
+
 QuizPulse is a production-quality, gamified EdTech quiz platform designed to replicate micro-learning user flows (popularized by WhatsApp groups and Duolingo) combined with deep, recruiter-level SaaS telemetry powered directly by optimized MongoDB aggregation pipelines.
 
 ---
