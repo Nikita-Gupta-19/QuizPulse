@@ -63,3 +63,23 @@ async def export_csv(db = Depends(get_db)):
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to generate CSV: {str(e)}")
+
+@router.get("/seed")
+async def seed_database():
+    """
+    Exposes an endpoint to trigger seeding of the connected database directly from a browser.
+    """
+    try:
+        import app.seed.seed as seeder
+        seeder.clean_database()
+        seeder.ensure_db_indexes(seeder.db)
+        
+        users = seeder.seed_users()
+        exams, subjects, chapters = seeder.seed_exams_subjects_chapters()
+        questions = seeder.seed_questions(chapters)
+        seeder.seed_quiz_history_and_analytics(users, chapters, questions)
+        
+        return {"status": "success", "message": "Database seeded successfully with 100 profiles and 1200+ attempts."}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to seed database: {str(e)}")
+
