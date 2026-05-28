@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+
+# Local envs and virtualenvs
+venv/
+venv_win/
+backend/venv/
+backend/venv_win/
+
+# Builds and Cache
+.next/
+frontend/.next/
+.pytest_cache/
+backend/.pytest_cache/
+__pycache__/
+**/__pycache__/
+
+# Logs
+logs/
+*.log
+C:\Users\DELL\.gemini\antigravity\scratch\quizpulse\logs/
