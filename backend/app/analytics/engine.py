@@ -83,7 +83,7 @@ class AnalyticsEngine:
             {"$group": {"_id": None, "avgQs": {"$avg": "$totalQuestions"}}}
         ]
         avg_q_res = await db.quiz_sessions.aggregate(avg_q_pipeline).to_list(1)
-        avg_qs_per_session = round(avg_q_res[0]["avgQs"] if avg_q_res else 0.0, 1)
+        avg_qs_per_session = round(avg_q_res[0]["avgQs"] or 0.0, 1) if (avg_q_res and avg_q_res[0].get("avgQs") is not None) else 0.0
 
         # 6. Response Time Percentiles (p50, p95)
         response_times_cursor = db.question_attempts.find({"skipped": False}, {"responseTime": 1})
